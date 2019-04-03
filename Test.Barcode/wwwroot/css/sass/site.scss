@@ -1,0 +1,397 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Roboto|Merriweather+Sans|Titillium+Web:300,400,500,600,700');
+
+$body-bg-color: #f2f6fa;
+$header-bg-color: #000;
+$header-height: 66px; // header height is dynamic (for now), comes out to 66px;
+$footer-height: 150px; // footer height is set in the class at 100px;
+$viewport-height: calc(100vh - (#{$header-height} + #{$footer-height}));
+
+html, body {
+    // this should probably be in a media query for mobile devices
+    //height: 100%;
+
+    .body-container {
+        height: calc(100vh - #{$header-height}); // to take into account the margin and height
+        margin-top: $header-height;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+body {
+    background-color: $body-bg-color;
+}
+
+
+header {
+    left: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+    nav {
+        background-color: $header-bg-color;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.6);
+        z-index: 100;
+
+        .back-home {
+            color: #fff;
+
+            span {
+                font-size: 26px;
+            }
+        }
+
+        .navbar-brand {
+            position: absolute;
+            margin-left: 50%;
+            transform: translateX(-70%);
+            //transform: translateX(-50%);
+            img {
+                width: 80px;
+            }
+        }
+
+        .navbar-toggler {
+            span {
+                color: rgba(255,255,255,1.0);
+            }
+        }
+
+        #navbarMenuContent {
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            width: 280px; /*example + never use min-width with this solution */
+            //width: 80%;
+            height: 100%;
+            //background: $header-bg-color;
+            background: rgba(0, 0, 0, 0.85);
+            touch-action: manipulation;
+        }
+
+        .navbar-collapse {
+            color: white;
+
+
+            .user-info {
+                margin: 20px auto 10px;
+
+                .user-icon {
+                    background: #fff url("../../images/james2.jpg") no-repeat;
+                    background-size: cover;
+                    display: block;
+                    width: 110px;
+                    height: 110px;
+                    border-radius: 55px;
+                    margin: 0 auto;
+                }
+
+                .name {
+                    color: rgba(255,255,255,0.92);
+                    font-family: Roboto, 'Open Sans', 'Segoe UI';
+                    font-size: 18px;
+                    text-align: center;
+                }
+
+                .company {
+                    color: rgba(255,255,255,0.6);
+                    display: block;
+                    font-family: 'Open Sans', 'Segoe UI';
+                    font-size: 13px;
+                    font-style: italic;
+                    margin-top: -6px;
+                    text-align: center;
+                }
+            }
+
+            .navbar-nav {
+                font-family: 'Open Sans';
+                font-size: 16px;
+                margin-top: 35px;
+
+                a {
+                    color: rgba(255, 255, 255, 0.92);
+                }
+
+                .nav-item {
+                    padding: 10px 15px;
+                    min-width: 210px;
+                    text-align: right;
+
+                    span {
+                        margin-left: 13px;
+
+                        &.fa-barcode-read {
+                            margin-left: 9px;
+                        }
+                    }
+
+                    &.sign-out {
+                        border: 1px solid hsla(354, 70%, 60%, 1);
+                        border-radius: 4px;
+                        bottom: 20px;
+                        color: hsla(354, 70%, 60%, 1);
+                        margin-left: 10%;
+                        min-width: 220px;
+                        padding: 10px 55px;
+                        position: absolute;
+                        text-align: center;
+                        width: 80%;
+                        //margin-left: 50%;
+                        //transform: translateX(-50%);
+                        &:hover, &:active {
+                            background-color: hsla(354, 70%, 60%, 0.9);
+                            color: rgba(255, 255, 255, 0.8);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.main {
+    //height: 100%;
+    padding-top: 60px;
+
+    img {
+        display: block;
+        margin: 0 auto 10px;
+        width: auto;
+    }
+
+    h2 {
+        color: #0074a6;
+        text-align: center;
+        /* text-shadow: 0 1px 2px rgba(0,0,0,0.3); */
+    }
+}
+
+.page-footer {
+    height: 50px;
+    background-color: yellow;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.scanner {
+    //min-height: 740px;
+    height: 100%;
+    
+    .scan-viewport {
+        position: relative;
+        width: 100%;
+        //height: $viewport-height;
+        height: 100%;
+        overflow: hidden;
+        text-align: center;
+
+        & > canvas, & > video {
+            //max-width: 100%;
+            //width: 100%;
+            height: 100%;
+            margin-left: 50%; //https://stackoverflow.com/questions/14562457/center-oversized-image-in-div
+            transform: translateX(-50%);
+            //margin-left: -50%;
+            //background-color: beige;
+        }
+
+        canvas {
+            &.drawing, &.drawingBuffer {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+
+    .scan-target {
+        height: 250px;
+        position: absolute;
+        top: 25%;
+        width: 100%;
+        z-index: 98;
+
+        .boundary {
+            height: 50px;
+            position: absolute;
+            width: 50px;
+
+            &.top-left {
+                top: 20px;
+                left: 20px;
+                border-top: 8px solid rgba(255, 255, 255, 0.2);
+                border-left: 8px solid rgba(255, 255, 255, 0.2);
+            }
+
+            &.top-right {
+                top: 20px;
+                right: 20px;
+                border-top: 8px solid rgba(255, 255, 255, 0.2);
+                border-right: 8px solid rgba(255, 255, 255, 0.2);
+            }
+
+            &.bottom-left {
+                bottom: 20px;
+                left: 20px;
+                border-bottom: 8px solid rgba(255, 255, 255, 0.2);
+                border-left: 8px solid rgba(255, 255, 255, 0.2);
+            }
+
+            &.bottom-right {
+                bottom: 20px;
+                right: 20px;
+                border-bottom: 8px solid rgba(255, 255, 255, 0.2);
+                border-right: 8px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+
+    .scan-controls {
+        height: $footer-height;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        //background-color: rgba(0,0,0,1);
+        background-color: rgba(255, 255, 255, 0.6);
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.6);
+        color: #fff;
+        z-index: 99;
+
+
+        .expand-toggle {
+            margin: 0;
+            overflow: auto;
+
+            .toggle-bar {
+                background-color: rgba(0,0,0,0.3);
+                border-radius: 5px;
+                cursor: pointer;
+                height: 5px;
+                margin: 4px auto;
+                width: 18%;
+            }
+        }
+
+        .results-title {
+            color: rgba(0,0,0,0.9);
+            font-size: 14px;
+            font-weight: 400;
+            padding: 3px 0 2px 15px;
+        }
+
+        .scan-results {
+            overflow: auto;
+            min-height: 40px;
+            padding: 0 10px 10px 10px;
+            white-space: nowrap;
+
+            .result {
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 5px;
+                color: black;
+                display: inline-block;
+                font-size: 17px;
+                margin: 0 2px;
+                //padding: 3px 8px;
+                padding: 7px 48px 5px 10px;
+                position: relative;
+
+                .delete {
+                    position: absolute;
+                    right: 13px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #800000;
+                }
+            }
+        }
+
+        .control-buttons {
+            bottom: 0;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+
+            .next {
+                float: right;
+                margin: 0;
+                display: none;
+
+                span {
+                    float: right;
+                    margin-left: 15px;
+                    margin-top: 5px;
+                }
+            }
+        }
+
+        &.expanded-controls {
+            min-height: 75%;
+
+            .scan-results {
+                overflow: auto;
+                max-height: 80%;
+                min-height: unset;
+                padding: 0;
+                white-space: normal;
+
+                .result {
+                    background-color: rgba(255,255,255,0.7);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 0;
+                    display: block;
+                    margin: 0;
+                    padding: 12px 48px 10px 20px;
+                }
+            }
+        }
+    }
+    
+}
+
+.test {
+    bottom: 170px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+}
+
+.new-scan-button {
+    position: absolute;
+    /*bottom: 120px;
+    right: 20px;*/
+    //background-color: rgba(255,255,255,0.6);
+    bottom: 25px;
+    right: 25px;
+    background-color: rgba(0, 123, 255, 0.8);
+    border: 1px solid #fff !important;
+    box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.6);
+    border-radius: 35px;
+    border: none;
+    padding: 15px 12px;
+
+    span {
+        font-size: 30px;
+    }
+
+    &:hover {
+        background-color: rgba(0, 105, 217, 0.8);
+    }
+
+    &:focus {
+        box-shadow: 0 0 5px 3px rgba(38,143,255,.5);
+    }
+}

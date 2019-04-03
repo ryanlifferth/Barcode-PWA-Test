@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Scan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="scanner">
+
+    <div class="scan-viewport"></div>
+
+    <!--<button id="newScan" class="new-scan-button btn btn-primary">
+        <span class="fal fa-barcode-read fa-2x"></span>
+    </button>-->
+
+    <div class="scan-target">
+        <div class="boundary top-left"></div>
+        <div class="boundary top-right"></div>
+        <div class="boundary bottom-left"></div>
+        <div class="boundary bottom-right"></div>
+    </div>
+
+    <div class="scan-controls">
+
+        <div class="expand-toggle">
+            <div class="toggle-bar"></div>
+        </div>
+        <div class="results-title"><span class="scan-count">0</span> <span class="docs-plurality">documents</span> scanned</div>
+        <div class="scan-results">
+            <!-- Do not add content here - JS prepends number badges as they are scanned -->
+        </div>
+        <div class="control-buttons">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-success next">
+                Add to batch
+                <span class="fal fa-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+
+    <!--<div class="test fal fa-grimace fa-3x"></div>-->
+
+</div>
+
+<div class="test fal fa-stopwatch fa-3x"></div>
+
+@section Scripts {
+    @*<script src="https://webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
+        <script src="https://cdn.rawgit.com/serratus/quaggaJS/0420d5e0/dist/quagga.min.js"></script>*@
+    <script src="~/lib/webrtc-adapter/adapter.js" type="text/javascript"></script>
+    <script src="~/lib/quaggajs/quagga.min.js" type="text/javascript"></script>
+    <script src="~/js/scanner.js" asp-append-version="true"></script>
+}
+

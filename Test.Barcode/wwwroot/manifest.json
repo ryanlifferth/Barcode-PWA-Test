@@ -1,0 +1,46 @@
+{
+  "name": "MetaSource App Scanner",
+  "short_name": "MetaSource Tracker",
+  "description": "Prototype of MetaSource credit card application tracker",
+  "icons": [
+    {
+      "src": "images/icons/logo128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/logo144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/logo152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/logo168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icons/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/icons/logo256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/",
+  "background_color": "white",
+  "theme_color": "white"
+}     
